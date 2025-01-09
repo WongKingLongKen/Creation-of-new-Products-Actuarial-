@@ -6,7 +6,6 @@
 # problem: a good function should only contain 30 lines, so better to separate the function into different portions
 
 import xlwings as xw
-import pandas as pd
 import os 
 
 def duplicate_and_modify_rows(file_path, product_pairs):
