@@ -70,15 +70,6 @@ def duplicate_and_modify_rows(file_path, product_pairs):
 # Input file
 file_path = r'C:\2024-09 (v2)\7. Table Working\TABLE_conversion\testing\products.xlsm'
 
-# product_list = pd.read_csv(r'C:\2024-09 (v2)\7. Table Working\TABLE_conversion\testing\product_list.csv') 
-
-# pair = []
-# for i in range(product_list.shape[0]):
-#     tmp_pair = product_list.loc[i,:]
-#     print(tmp_pair)
-#     pair.append(tuple(tmp_pair))
-# print(pair)
-
 product_pairs = [
 
 ('AAA1A','AAB1A'),
