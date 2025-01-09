@@ -3,6 +3,8 @@
 # purpose: 1. the script can sort all the required (original) plancode throughout the workbook in Excel 
 # 2. duplicate the required (original) plancode to the bottom of the data 
 # 3. rename the duplicated plancode to the new plancode
+# problem: a good function should only contain 30 lines, so better to separate the function into different portions
+
 import xlwings as xw
 import pandas as pd
 import os 
