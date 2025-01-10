@@ -74,6 +74,7 @@ def duplicate_and_modify_rows(file_path, product_pairs):
 file_path = r'C:\2024-09 (v2)\7. Table Working\TABLE_conversion\testing\Table conversion_v8.3 1 _products_trial.xlsm'
 
 product_pairs = [
+('CGG01A','CGK01A'),    
 ('CGG01M','CGK01M'),
 ('CGG05A','CGK05A'),
 ('CGG05M','CGK05M'),
