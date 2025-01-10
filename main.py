@@ -110,3 +110,11 @@ product_pairs = [
 ]
 
 duplicate_and_modify_rows(file_path, product_pairs)
+
+
+'''
+4
+!2 PROD_NAME 1 2 3 12
+* CGG01A     10 0 0 CGG01A
+...
+'''
