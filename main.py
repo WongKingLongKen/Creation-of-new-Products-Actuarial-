@@ -18,27 +18,48 @@ def open_workbook(file_path: str = ""):
 def process_sheet(sheet, product_pairs):
     print(f"Processing sheet: {sheet.name}")
 
-    # need to rewrite it to cover the whole sheet
-    product_column = 2
     used_range = sheet.used_range
     values = used_range.value
 
+    if not values:
+        return []
+    
+    # Convert product pairs to dict for faster lookup
+    product_map = dict(product_pairs)
     rows_to_add = []
+
     for row in values:
-        if row:
-            current_product = row[product_column - 1]
-            for target_product, new_product in product_pairs:
-                if current_product == target_product:
-                    print(f"Found target product '{target_product}' in sheet '{sheet.name}'")
+        if not row:
+            continue
+            
+        needs_duplication = False
+        new_row = None
+
+        # Check each cell in the row for product names
+        for col_idx, cell_value in enumerate(row):
+            if isinstance(cell_value, str) and cell_value in product_map:
+                if not needs_duplication:
+                    needs_duplication = True
                     new_row = list(row)
-                    new_row[product_column - 1] = new_product
-                    rows_to_add.append(new_row)
-                    break  # Move to the next row after finding a match
+                new_row[col_idx] = product_map[cell_value]
+
+            # Handle cases where product code might be enclosed in double quotes
+            elif isinstance(cell_value, str):
+                cleaned_value =cell_value.strip('"\\')
+                if cleaned_value in product_map:
+                    if not needs_duplication:
+                        needs_duplication = True
+                        new_row = list(row)
+                    if cell_value.startswith('"'):
+                        new_row[col_idx] = f'"{product_map[cleaned_value]}"'
+                    elif cell_value.startswith('\\'):
+                        new_row[col_idx] = '\\'
+                    else:
+                        new_row[col_idx] = product_map[cleaned_value]
+        if needs_duplication:
+            rows_to_add.append(new_row)
 
     return rows_to_add
-    ################
-
-
 
 def add_rows_to_sheet(sheet, rows_to_add):
     if rows_to_add:
@@ -110,7 +131,6 @@ product_pairs = [
 ]
 
 duplicate_and_modify_rows(file_path, product_pairs)
-
 
 '''
 4
