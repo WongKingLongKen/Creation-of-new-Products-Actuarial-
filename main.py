@@ -115,6 +115,7 @@ class ExcelConverter:
         
         finally:
             session.close()
+            
 # def process_sheet(sheet, product_pairs):
 #     print(f"Processing sheet: {sheet.name}")
 
@@ -160,6 +161,7 @@ class ExcelConverter:
 #             rows_to_add.append(new_row)
 
 #     return rows_to_add
+    
     def add_rows_to_sheet(self, sheet: xw.Sheet, rows_to_add: List[List]) -> bool:
         if not rows_to_add:
             print(f"No matching rows found in sheet '{sheet.name}'")
@@ -176,7 +178,6 @@ class ExcelConverter:
             print(f"Process completed. Changes saved to {self.file_path}")
         else:
             print("No changes were made to the file. No target products found.")
-
 # def add_rows_to_sheet(sheet, rows_to_add):
 #     if rows_to_add:
 #         last_row = sheet.used_range.last_cell.row
